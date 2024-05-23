@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte enrere per a la jubilació</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ffeaa7;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #countdown {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #countdown span {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 0 5px;
+        }
+
+        #message {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ffeaa7;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fireworks {
+            width: 100%;
+            height: 200px;
+            background: url('fireworks.gif') no-repeat center center;
+            background-size: cover;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .floating {
+            position: absolute;
+            bottom: -100px;
+            width: 100%;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            filter: blur(50px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating:nth-child(2) {
+            animation-duration: 8s;
+            animation-delay: -2s;
+        }
+
+        .floating:nth-child(3) {
+            animation-duration: 10s;
+            animation-delay: -4s;
+        }
+
+        .floating:nth-child(4) {
+            animation-duration: 12s;
+            animation-delay: -6s;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="floating"></div>
+    <div class="container">
+        <h1>Compte enrere per a la jubilació</h1>
+        <div id="countdown">
+            <span id="days"></span>d
+            <span id="hours"></span>h
+            <span id="minutes"></span>m
+            <span id="seconds"></span>s
+        </div>
+        <div id="message"></div>
+        <div id="celebration" class="hidden">
+            <h2>Felicitats per la teva jubilació!</h2>
+            <div class="fireworks"></div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const retirementDate = new Date('2025-02-14T00:00:00');
+            const messages = [
+                "Un dia menys per al teu merescut descans!",
+                "Segueix endavant, la jubilació és a tocar!",
+                "Cada dia que passa estàs més a prop d'una nova aventura.",
+                "Ànim! La teva retirada serà fabulosa.",
+                "Ets increïble! Gaudeix cada moment fins a la jubilació.",
+                "Quina emoció! Aviat gaudiràs del teu temps lliure.",
+                "Cada dia és un pas més cap a la teva llibertat.",
+                "La jubilació t'espera amb els braços oberts!",
+                "Tens molt a celebrar, segueix així!",
+                "Ets una inspiració, aviat podràs relaxar-te.",
+                "La teva dedicació aviat serà recompensada.",
+                "Queda poc per començar una nova etapa.",
+                "Cada dia és una victòria, avança amb il·lusió.",
+                "El millor està per venir, ànims!",
+                "La jubilació és la recompensa al teu esforç.",
+                "No hi ha res com la satisfacció del deure complert.",
+                "Aviat tindràs temps per a tot el que estimes.",
+                "Cada dia és un regal, gaudeix-lo!",
+                "Segueix somrient, la jubilació és a prop.",
+                "Ets un exemple de perseverança, aviat arribarà el teu moment.",
+                "Els dies passen ràpid, aviat serà el teu dia.",
+                "La jubilació és només el començament d'una nova aventura.",
+                "Cada dia és un pas més cap a la teva felicitat.",
+                "El compte enrere ha començat, gaudeix el viatge!",
+                "Ets única, la jubilació serà tan especial com tu.",
+                "Has treballat dur, aviat podràs descansar.",
+                "La teva jubilació serà plena de moments feliços.",
+                "Tens molt per celebrar, segueix endavant!",
+                "El teu futur està ple de possibilitats, gaudeix cada pas.",
+                "Cada dia és un pas més cap a la llibertat.",
+                "La jubilació està a la volta de la cantonada, ànims!",
+                "Estàs a punt de començar una nova etapa emocionant.",
+                "Cada dia que passa és un dia menys per a la teva jubilació.",
+                "El teu esforç aviat serà recompensat amb temps lliure.",
+                "Cada segon t'apropa més a la teva merescuda jubilació.",
+                "Queda poc per a la teva gran celebració!",
+                "El teu compte enrere personal està en marxa, ànims!",
+                "Aviat podràs gaudir de la teva llibertat.",
+                "Estàs a punt de començar una nova aventura cada dia més a prop.",
+                "Cada dia és un recordatori que la jubilació és a prop.",
+                "Segueix endavant, la teva nova vida està a punt de començar!",
+                "El temps vola, i la teva jubilació està a prop.",
+                "Cada dia és un pas més cap al teu merescut descans.",
+                "Ets una estrella brillant, aviat podràs brillar lliurement.",
+                "El millor està per venir, segueix endavant!",
+                "Cada dia és una nova oportunitat per preparar-te per la jubilació.",
+                "Gaudeix cada moment, la jubilació és a tocar."
+            ];
+
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = retirementDate - now;
+
+                if (timeLeft <= 0) {
+                    document.getElementById('countdown').classList.add('hidden');
+                    document.getElementById('message').classList.add('hidden');
+                    document.getElementById('celebration').classList.remove('hidden');
+                    return;
+                }
+
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours;
+                document.getElementById('minutes').innerText = minutes;
+                document.getElementById('seconds').innerText = seconds;
+
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                document.getElementById('message').innerText = randomMessage;
+            }
+
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        });
+    </script>
+</body>
+</html>
+
+
+
